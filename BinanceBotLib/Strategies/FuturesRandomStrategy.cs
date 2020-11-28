@@ -1,5 +1,6 @@
 ﻿using Binance.Net;
 using ExchangeClientLib;
+using ShareX.HelpersLib;
 using System.Linq;
 
 namespace BinanceBotLib
@@ -22,23 +23,35 @@ namespace BinanceBotLib
                 // If zero positions
                 if (pos.EntryPrice == 0 && openOrders.Count() == 0)
                 {
-                    trade.CoinQuantity = 0.1m;
-                    bool rLong = ShareX.HelpersLib.RandomFast.Next(1) == 1;
-                    if (rLong)  // Create long position
+                    trade.CoinQuantity = 0.5m;
+                    RandomFast.Run(() =>
                     {
-                        // _client.PlaceBuyOrder(trade, trade.Price + 20.0m);
                         _client.PlaceBuyOrder(trade);
-                        trade.UpdatePrice(trade.Price + 20m);
+                    }, () =>
+                    {
+                        _client.PlaceSellOrder(trade);
+                    });
+                }
+                // When there is an existing position
+                else if (pos.EntryPrice > 0 && openOrders.Count() == 0)
+                {
+                    trade.CoinQuantity = pos.Quantity;
+
+                    if (pos.LiquidationPrice < pos.EntryPrice) // Long position
+                    {
+                        trade.LastAction = Binance.Net.Enums.OrderSide.Buy;
+                        trade.UpdatePrice(pos.EntryPrice + 10m);
                         _client.PlaceSellOrder(trade, closePosition: true);
                     }
                     else
                     {
-                        // _client.PlaceSellOrder(trade, trade.Price - 20.0m);
-                        _client.PlaceSellOrder(trade);
-                        trade.UpdatePrice(trade.Price - 20m);
-                        _client.PlaceSellOrder(trade, closePosition: true);
+                        trade.LastAction = Binance.Net.Enums.OrderSide.Sell;
+                        trade.UpdatePrice(pos.EntryPrice - 10m);
+                        _client.PlaceBuyOrder(trade, closePosition: true);
                     }
                 }
+
+                OnTradeListItemHandled(trade);
             }
 
         }

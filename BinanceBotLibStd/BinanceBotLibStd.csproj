@@ -16,6 +16,7 @@
     <Compile Include="..\BinanceBotLib\Statistics.cs" Link="Statistics.cs" />
     <Compile Include="..\BinanceBotLib\Strategies\FixedPriceChangeStrategy.cs" Link="Strategies\FixedPriceChangeStrategy.cs" />
     <Compile Include="..\BinanceBotLib\Strategies\FixedProfitStrategy.cs" Link="Strategies\FixedProfitStrategy.cs" />
+    <Compile Include="..\BinanceBotLib\Strategies\FuturesRandomStrategy.cs" Link="FuturesRandomStrategy.cs" />
     <Compile Include="..\BinanceBotLib\Strategies\FuturesStrategy.cs" Link="Strategies\FuturesStrategy.cs" />
     <Compile Include="..\BinanceBotLib\Strategies\TradingViewAlertStrategy.cs" Link="Strategies\TradingViewAlertStrategy.cs" />
     <Compile Include="..\BinanceBotLib\Strategy.cs" Link="Strategy.cs" />
