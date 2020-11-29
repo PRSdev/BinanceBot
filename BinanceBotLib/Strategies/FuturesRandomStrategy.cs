@@ -1,6 +1,7 @@
 ﻿using Binance.Net;
 using ExchangeClientLib;
 using ShareX.HelpersLib;
+using System;
 using System.Linq;
 
 namespace BinanceBotLib
@@ -49,6 +50,11 @@ namespace BinanceBotLib
                         trade.UpdatePrice(pos.EntryPrice - 10m);
                         _client.PlaceBuyOrder(trade, closePosition: true);
                     }
+                }
+                else
+                {
+                    Console.WriteLine($"Market Price: {trade.Price}");
+                    Console.WriteLine(new Fib(trade).ToString());
                 }
 
                 OnTradeListItemHandled(trade);
