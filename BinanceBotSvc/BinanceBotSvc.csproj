@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>dotnet-BinanceBotSvc-FA76A258-5FE1-4711-875A-AB64863B1345</UserSecretsId>
   </PropertyGroup>
 
