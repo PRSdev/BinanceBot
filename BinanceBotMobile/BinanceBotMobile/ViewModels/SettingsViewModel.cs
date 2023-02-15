@@ -37,10 +37,11 @@ namespace BinanceBot
             }
         }
 
+        private FuturesTakeProfitMode takeProfitMode = FuturesTakeProfitMode.ProfitByPriceRange;
         public override FuturesTakeProfitMode TakeProfitMode
         {
-            get => (FuturesTakeProfitMode)Preferences.Get(nameof(TakeProfitMode), (int)FuturesTakeProfitMode.ProfitByPriceRange);
-            set => SetPreference(nameof(TakeProfitMode), (int)value);
+            get { return takeProfitMode; }
+            set => SetProperty(ref takeProfitMode, value);
         }
 
         public override bool IsAutoAdjustShortAboveAndLongBelow

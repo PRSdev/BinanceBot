@@ -12,7 +12,7 @@
         <Label x:Name="lblStatus"
                Text="Status"
                FontSize="Large"
-               VerticalOptions="CenterAndExpand"
-               HorizontalOptions="Center" />
+               VerticalOptions="StartAndExpand"
+               HorizontalOptions="StartAndExpand" />
     </StackLayout>
 </ContentPage>
